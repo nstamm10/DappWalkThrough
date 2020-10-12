@@ -1,4 +1,4 @@
-import Web3 from "web3"; //Importing Web3 object
+import Web3 from "../node_modules/web3"; //Importing Web3 object
 import starNotaryArtifact from "../../build/contracts/StarNotary.json"; // Importing the JSON representation of the Smart Contract
 
 const App = {
@@ -11,8 +11,10 @@ const App = {
 
     try {
       // get contract instance
-      const networkId = await web3.eth.net.getId(); //This method find the network id to retrieve the configuration from truffle-config.js file
+      const networkId = await web3.eth.net.getId();
+      console.log(networkId); //This method find the network id to retrieve the configuration from truffle-config.js file
       const deployedNetwork = starNotaryArtifact.networks[networkId]; // Retrieve the Network configuration from truffle-config.js file
+      console.log(deployedNetwork);
       this.meta = new web3.eth.Contract( // Initializing the contract
         starNotaryArtifact.abi,
         deployedNetwork.address,
